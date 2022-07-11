@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write your own post</title>
+
+    <%- include("./partials/header.ejs")  %> 
+</head>
+<body>
+    <h1>Compose</h1> 
+
+    <form action="/compose" method="post">
+        <label>Title</label>
+        <input type="text" class="form-control" id="titleText" aria-describedby="emailHelp" placeholder="Enter Title of post">
+
+        <label>Post</label> 
+        <textarea class="form-control" aria-label="With textarea"></textarea>
+
+        <button type="submit">Publish</button> 
+    </form>
+
+
+
+
+    <%- include("./partials/footer.ejs")  %> 
+</body>
+</html>
