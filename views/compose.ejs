@@ -13,12 +13,12 @@
 
     <form action="/compose" method="post">
         <label>Title</label>
-        <input type="text" class="form-control" id="titleText" aria-describedby="emailHelp" placeholder="Enter Title of post">
+        <input type="text" class="form-control" id="titleText" name="titleText" aria-describedby="emailHelp" placeholder="Enter Title of post">
 
         <label>Post</label> 
-        <textarea class="form-control" aria-label="With textarea"></textarea>
+        <textarea class=" txtArea form-control" aria-label="With textarea" name="contentText"></textarea>
 
-        <button type="submit">Publish</button> 
+        <button class="btnCompose bg-dark" type="submit">Publish</button> 
     </form>
 
 
