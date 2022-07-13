@@ -12,10 +12,15 @@
 
     <p><%=homeContent%></p>
 
-    <div class="post">
-        <h1><%=posts[0].postTitle%></h1> 
-        <p><%=posts[0].postContent %></p>
-    </div>
+    <% posts.forEach(element=>{ %>
+
+        <div class="post">
+            <h1><%=element.postTitle %></h1>
+            <p><%=element.postContent.substring(0, 100) %> ... <a id="readMore" href="/post/<%=element.postTitle%>" >read more</a></p>
+        </div>
+
+   <% }) %> 
+
 
     <%- include("./partials/footer.ejs")  %> 
 </body>

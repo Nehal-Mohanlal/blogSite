@@ -1,6 +1,7 @@
-// load express
+// load modules to be used
 const express = require("express") 
-// instantiate express
+const lodash = require("lodash")
+ // instantiate express
 const app = express() 
 
 // get a port 
@@ -23,7 +24,7 @@ let aboutContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
 let contactContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 // all our posts will go here
-let posts = [{postTitle: "Day 1", postContent: "Space the final frontier"} ] 
+let posts = [{postTitle: "Day 1", postContent: "For the night is dark and full of terrors"} ] 
 
 // get home page
 app.get("/" , (req,res)=>{
@@ -46,6 +47,39 @@ app.get("/compose", (req,res)=>{
 
 })
 
+// lets also get the post page
+app.get("/post", (req,res)=>{
+    res.render("post") 
+   
+})
+
+//getting an endpoint 
+app.get("/post/:postTitle", (req,res)=>{
+   
+    let pTitle =  req.params.postTitle
+        pTitle = lodash.kebabCase(pTitle) 
+    
+    
+
+    posts.forEach(element => {
+
+        let postTitle = element.postTitle
+        postTitle = lodash.kebabCase(postTitle)
+
+        if(postTitle == pTitle){
+            res.render("post", {postTitle: element.postTitle , postContent:element.postContent})
+            
+
+            
+        }
+        else{
+            console.log("Match Not found")
+        }
+    });
+   
+})
+
+
 /// post our content to website
 app.post("/compose", (req,res)=>{
     let title = req.body.titleText
@@ -63,7 +97,7 @@ app.post("/compose", (req,res)=>{
 })
 
 // standard setting up of server// with some error handling 
-app.listen(port, (e)=>{
+app.listen(port || 3017, (e)=>{
     if(e){
         console.log("error establishing the server")
     }
@@ -71,5 +105,8 @@ app.listen(port, (e)=>{
         console.log("server running on port " + port)
     }
 })
+
+
+///posts.unshift???? other array Methods for descending order ////////// 
 
 
